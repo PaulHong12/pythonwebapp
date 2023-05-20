@@ -108,16 +108,16 @@ def post_actions(request, action, board=None, post_id=None):
     else:
         return redirect('index')
     
-
+# 오늘 빠르게 끝내기. 다른 프로젝트 바로 시작 ㄱㄱ)
 # 후원기업 로고 이미지들 introduction.html에 추가(예시로) ask ChatGPT!
+
 
 # 글, 댓글 수정, 삭제 , 
 
-# Deploy on Heroku and test on my phone!(오늘 빠르게 끝내기. 다른 프로젝트 바로 시작 ㄱㄱ)
+
 
 
 # 나중에 ppt만들기, 동영상 녹화하기. 바로 정현사, 정프기 프로젝트 시작하기.!
-
 
 
 
