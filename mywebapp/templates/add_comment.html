@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block title %}Add Comment{% endblock %}
+
+{% block content %}
+    <h1>답변 달기</h1>
+    {% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% else %}
+        <h2>답변을 달려면 회원가입을 해주세요.</h2>
+        <a href="{% url 'signup' %}">
+            <button class="cool-button">회원가입</button>
+          </a>
+    {% endif %}
+
+
+{% endblock %}

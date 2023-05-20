@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block title %}질문 올리기{% endblock %}
+{% block content %}
+<h1>질문 올리기</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post</button>
+</form>
+{% endblock %}

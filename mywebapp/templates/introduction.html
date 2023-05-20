@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block title %}{{ board.name }}{% endblock %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1 class="welcome-heading">환영합니다!</h1>
+    <p class="welcome-text">Tree 는 누구나 무료로 모르는 내용을 질문하고, 지식을 공유할 수 있도록 만들어진 웹사이트에요. 우리 함께 지식의 나무를 가꾸어 보아요.</p>
+  </div>
+
+    <head>
+        <style>
+          .cool-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+          }
+      
+          .cool-button:hover {
+            background-color: #45a049;
+          }
+        </style>
+      </head>
+
+{% endblock %}

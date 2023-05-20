@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>  
+    <p>{{ post.content }}</p>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in post.comments.all %}
+            <li>{{ comment.content }}</li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'add_comment' post_id=post.id %}">Add a comment</a>
+{% endblock %}
