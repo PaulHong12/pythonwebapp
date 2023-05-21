@@ -30,7 +30,7 @@ class CommentForm(forms.ModelForm):
         
 # rendering each page
 def index(request): 
-    return render(request, 'index.html')
+    return render(request, 'introduction.html')
 
 def home(request):
     posts = Post.objects.all().order_by('-created_at')
