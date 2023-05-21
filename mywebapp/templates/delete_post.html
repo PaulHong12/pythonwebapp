@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>글 삭제</title>
+</head>
+<body>
+    <h2>글 삭제</h2>
+    
+    <p>정말로 글을 삭제하시겠습니까?:  "{{ post.title }}"?</p>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

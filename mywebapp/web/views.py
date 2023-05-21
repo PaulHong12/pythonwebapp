@@ -5,19 +5,28 @@ from web.models import Post, Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+
 
 # create form classes                  
-class PostForm(forms.ModelForm):  
-    
+
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Enter title', 'style': 'font-size: 23px; height: 50px, width:80%;'}),
+            'content': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Enter content', 'rows': 15, 'style': 'font-size: 20px; width: 80%;'}),
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']
+        widgets = {
+            'content': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'placeholder': '답변 작성', 'rows': 10, 'style': 'font-size: 18px;'}),
+        }
         
 # rendering each page
 def index(request): 
@@ -107,19 +116,61 @@ def post_actions(request, action, board=None, post_id=None):
 
     else:
         return redirect('index')
-    
-# 오늘 빠르게 끝내기. 다른 프로젝트 바로 시작 ㄱㄱ)
-# 후원기업 로고 이미지들 introduction.html에 추가(예시로) ask ChatGPT!
 
 
 # 글, 댓글 수정, 삭제 , 
+@login_required
+def delete_post(request, post_id, board):
+    post = get_object_or_404(Post, id=post_id)
+    
+    if post.author != request.user:
+        raise PermissionDenied
+    
+    if request.method == 'POST':
+        post.delete()
+        return redirect(board, board=board)
+        
+    return render(request, 'delete_post.html', {'post': post})
 
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    
+    if post.author != request.user:
+        raise PermissionDenied
+    
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        post.save()
+        return redirect('post_detail', post_id=post.id)
+        
+    return render(request, 'edit_post.html', {'post': post})
 
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    if comment.author != request.user:
+        raise PermissionDenied
+    
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('post_detail', post_id=comment.post.id)
+        
+    return render(request, 'delete_comment.html', {'comment': comment})
 
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    
+    if comment.author != request.user:
+        raise PermissionDenied
+    
+    if request.method == 'POST':
+        comment.content = request.POST['content']
+        comment.save()
+        return redirect('post_detail', post_id=comment.post.id)
+        
+    return render(request, 'edit_comment.html', {'comment': comment})
 
-# 나중에 ppt만들기, 동영상 녹화하기. 바로 정현사, 정프기 프로젝트 시작하기.!
-
-
-
-
-#(align each page to center.)

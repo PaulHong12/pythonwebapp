@@ -3,12 +3,15 @@
 {% block title %}{{ board.name }}{% endblock %}
 
 {% block content %}
+<!DOCTYPE html>
+<html>
 <div class="welcome-section">
     <h1 class="welcome-heading">환영합니다!</h1>
     <p class="welcome-text">Tree 는 누구나 무료로 모르는 내용을 질문하고, 지식을 공유할 수 있도록 만들어진 웹사이트에요. 우리 함께 지식의 나무를 가꾸어 보아요.</p>
-  </div>
-
+</div>
+  
     <head>
+
         <style>
           .cool-button {
             background-color: #4CAF50;
@@ -26,7 +29,14 @@
           .cool-button:hover {
             background-color: #45a049;
           }
+          .image-container {
+            display: flex;
+        }
+        
+        .image-container a {
+            padding-left: 10px;
+        }
         </style>
       </head>
-
+      </html>
 {% endblock %}

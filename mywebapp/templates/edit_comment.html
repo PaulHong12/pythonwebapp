@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>댓글 수정</title>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        label {
+            font-size: 18px;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        input[type="submit"] {
+            padding: 12px 20px;
+            font-size: 18px;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>답변 수정</h1>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="content">새로운 답변:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50" required>{{ comment.content }}</textarea><br><br>
+        
+        <input type="submit" value="저장">
+    </form>
+
+</body>
+</html>

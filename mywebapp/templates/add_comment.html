@@ -8,7 +8,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">작성</button>
     </form>
     {% else %}
         <h2>답변을 달려면 회원가입을 해주세요.</h2>

@@ -29,6 +29,10 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='introduction'), name='logout'),
 
 
-
+    # 글, 댓글 수정, 삭제
+    path('posts/<int:post_id><str:board>/delete/', views.delete_post, name='delete_post'),
+    path('posts/<int:post_id>/edit/', views.edit_post, name='edit_post'),
+    path('comments/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
+    path('comments/<int:comment_id>/edit/', views.edit_comment, name='edit_comment'),
 
 ]
